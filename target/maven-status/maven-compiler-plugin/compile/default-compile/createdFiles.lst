@@ -1,0 +1,5 @@
+com\mycompany\productmaintenanceapp\resources\JakartaEE8Resource.class
+com\mycompany\productmaintenanceapp\JakartaRestConfiguration.class
+music\data\ProductIO.class
+controllers\ProductServlet.class
+music\business\Product.class
