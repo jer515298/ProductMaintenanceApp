@@ -1,5 +1,15 @@
+<link rel="stylesheet" href="styles/main.css">
+
+<div>
+    <h1>Product Maintenance Application</h1>
+</div>
+<nav>
+    <a href="index.html">Home</a>
+    <a href="ProductServlet?action=list">Manage Products</a>
+</nav>
+
 <h2>Product List</h2>
-<a href="ProductServlet?action=add">Add Product</a>
+
 <table border="1">
     <tr>
         <th>Code</th>
@@ -19,3 +29,5 @@
         </tr>
     </c:forEach>
 </table>
+            
+<a href="ProductServlet?action=add" style="text-align: center">Add Product</a>
