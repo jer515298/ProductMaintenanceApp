@@ -47,7 +47,7 @@
             
         </table>
         
-        <a href="ProductServlet?action=add" style="text-align: center">Add Product</a>
+        <a href="ProductServlet?action=saveProduct" style="text-align: center">Add Product</a>
 
             
     

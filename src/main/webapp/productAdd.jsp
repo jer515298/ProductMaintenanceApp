@@ -13,7 +13,7 @@
     </head>
     <body>
 <form action="ProductServlet" method="post">
-    <input type="hidden" name="action" value="${action}">
+    <input type="hidden" name="action" value="${action}"> <%--sets action attribute --%>
     <label>Code:</label>
     <input type="text" name="code" value="${product.code}"><br>
     <label>Description:</label>
