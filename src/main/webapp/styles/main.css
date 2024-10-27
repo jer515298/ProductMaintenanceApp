@@ -1,34 +1,38 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
+/* 
+    Created on : Oct 24, 2024, 3:40:01 PM
+    Author     : ethan
+*/
+
+h1, h2, h3, h4 {
+    text-align: center;
 }
-section {
-    width: 450px;
-    margin: 0 auto;
+
+nav {
+    margin: 0;
+    padding: 0;
+    border: 3px solid black;
+    background-color: gray;
+    overflow: hidden;
+}
+
+nav a {
+    margin: 0;
     padding: 20px 20px;
-    background: white;
-    border: 2px solid navy;
-}
-h1 {
-    color: navy;
-}
-label {
-    width: 10em;
-    padding-right: 1em;
-    float: left;
-}
-input[type="text"] {  /* An attribute selector */
-    float: left;
-    width: 15em;
-    margin-bottom: .5em;
-}
-input[type="submit"] {  /* An attribute selector */
-    float: left;
-    margin-bottom: .5em;
-}
-br {
-    clear: left;
-}
-.error {
-    color: red;
+    color: white;
+    text-align: center;
     font-weight: bold;
+    font-size: large;
+    float: left;
+    text-decoration: none;
+    text-shadow: 4px 4px 7px black;
 }
+
+table {
+    margin: 10px auto;
+}
+
+a {
+    margin: auto;
+    text-align: center;
+}
+
