@@ -21,6 +21,8 @@
         </div>
         <nav>
             <a href="index.html">Home</a>
+            <a href="about.xhtml">About</a>
+            <a href="contact.html">Contact</a>
             <a href="ProductServlet?action=list">Manage Products</a>
         </nav>
         
