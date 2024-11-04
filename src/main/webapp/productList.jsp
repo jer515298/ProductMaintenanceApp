@@ -14,9 +14,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Product List</title>
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/productList.css">
     </head>
     
-        <div>
+        <div class="banner">
             <h1>Product Maintenance Application</h1>
         </div>
         <nav>
