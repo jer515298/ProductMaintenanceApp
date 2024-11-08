@@ -4,10 +4,7 @@
  */
 package music.business;
 
-/**
- *
- * @author ccull
- */
+
 import java.text.NumberFormat;
 import java.io.Serializable;
 public class Product implements Serializable {
