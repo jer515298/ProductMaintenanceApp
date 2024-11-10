@@ -1,110 +1,85 @@
 package music.data;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import music.business.Product;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class ProductDB {
 
-    // SQL Queries
-    private static final String GET_PRODUCTS_QUERY = "SELECT * FROM Products";
-    private static final String ADD_PRODUCT_QUERY = "INSERT INTO Products (code, description, price) VALUES (?, ?, ?)";
-    private static final String UPDATE_PRODUCT_QUERY = "UPDATE Products SET description = ?, price = ? WHERE code = ?";
-    private static final String DELETE_PRODUCT_QUERY = "DELETE FROM Products WHERE code = ?";
-    private static final String SELECT_PRODUCT_QUERY = "SELECT * FROM Products WHERE code = ?";
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("music_jpa");
 
     // Method to get a list of all products
     public static List<Product> getProducts() {
-        List<Product> products = new ArrayList<>();
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(GET_PRODUCTS_QUERY);
-             ResultSet rs = statement.executeQuery()) {
-
-            while (rs.next()) {
-                Product product = new Product();
-                product.setCode(rs.getString("code"));
-                product.setDescription(rs.getString("description"));
-                product.setPrice(rs.getDouble("price"));
-                products.add(product);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        EntityManager em = emf.createEntityManager();
+        String query = "SELECT p FROM Product p";
+        TypedQuery<Product> tq = em.createQuery(query, Product.class);
+        List<Product> products = null;
+        try {
+            products = tq.getResultList();
+        } finally {
+            em.close();
         }
         return products;
     }
 
     // Method to add a new product
     public static void addProduct(Product product) {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement ps = connection.prepareStatement(ADD_PRODUCT_QUERY)) {
-
-            ps.setString(1, product.getCode());
-            ps.setString(2, product.getDescription());
-            ps.setDouble(3, product.getPrice());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            em.persist(product);
+            transaction.commit();
+        } finally {
+            em.close();
         }
     }
 
     // Method to update an existing product
     public static void updateProduct(Product product) {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement ps = connection.prepareStatement(UPDATE_PRODUCT_QUERY)) {
-
-            ps.setString(1, product.getDescription());
-            ps.setDouble(2, product.getPrice());
-            ps.setString(3, product.getCode());
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            em.merge(product);
+            transaction.commit();
+        } finally {
+            em.close();
         }
     }
 
     // Method to delete a product by code
     public static void deleteProduct(String code) {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement ps = connection.prepareStatement(DELETE_PRODUCT_QUERY)) {
-
-            ps.setString(1, code);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+        try {
+            transaction.begin();
+            Product product = selectProduct(code);
+            if (product != null) {
+                em.remove(em.contains(product) ? product : em.merge(product));
+            }
+            transaction.commit();
+        } finally {
+            em.close();
         }
     }
 
     // Method to retrieve a single product by code
     public static Product selectProduct(String code) {
+        EntityManager em = emf.createEntityManager();
+        String query = "SELECT p FROM Product p WHERE p.code = :code";
+        TypedQuery<Product> tq = em.createQuery(query, Product.class);
+        tq.setParameter("code", code);
         Product product = null;
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement ps = connection.prepareStatement(SELECT_PRODUCT_QUERY)) {
-
-            ps.setString(1, code);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    product = new Product();
-                    product.setCode(rs.getString("code"));
-                    product.setDescription(rs.getString("description"));
-                    product.setPrice(rs.getDouble("price"));
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        try {
+            product = tq.getSingleResult();
+        } finally {
+            em.close();
         }
         return product;
-    }
-
-    // Optional: Method to test the connection
-    public static void testConnection() {
-        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
-            if (connection != null) {
-                System.out.println("Connection successful!");
-            } else {
-                System.out.println("Failed to establish a connection.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }

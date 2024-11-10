@@ -17,30 +17,47 @@
     </properties>
     
     <dependencies>
-    <dependency>
-        <groupId>jakarta.platform</groupId>
-        <artifactId>jakarta.jakartaee-api</artifactId>
-        <version>${jakartaee}</version>
-        <scope>provided</scope>
-    </dependency>
-    
-    <dependency> 
-        <groupId>javax.servlet</groupId> 
-        <artifactId>jstl</artifactId> 
-        <version>1.2</version> 
-    </dependency>
+        <!-- Jakarta EE API for general EE support -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>${jakartaee}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- JSTL for JSP support -->
+        <dependency> 
+            <groupId>javax.servlet</groupId> 
+            <artifactId>jstl</artifactId> 
+            <version>1.2</version> 
+        </dependency>
 
-    <!-- MySQL JDBC Driver -->
-    <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>8.0.26</version> 
-    </dependency>
-</dependencies>
+        <!-- MySQL JDBC Driver -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.26</version> 
+        </dependency>
 
+        <!-- EclipseLink for JPA support -->
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.7.7</version>
+        </dependency>
+        
+        <!-- Optional: JUnit for unit testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-     <build>
+    <build>
         <plugins>
+            <!-- Maven Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -53,6 +70,8 @@
                     </compilerArguments>
                 </configuration>
             </plugin>
+            
+            <!-- Maven WAR Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -61,6 +80,8 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            
+            <!-- Maven Dependency Plugin to copy jakarta.jakartaee-api jar to endorsed directory -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
