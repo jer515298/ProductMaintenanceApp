@@ -15,7 +15,7 @@ public class Product implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto-generates primary key value
-    @Column(name = "product_id") // specify column name if different in the database
+    @Column(name = "id") // specify column name if different in the database
     private Long productId; 
     
     @Column(name = "code") // specify column name if different in the database
