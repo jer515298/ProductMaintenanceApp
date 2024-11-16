@@ -26,32 +26,38 @@
             <a href="contact.html">Contact</a>
             <a href="ProductServlet?action=list">Manage Products</a>
         </nav>
-        
-        <h2>Product List</h2>
-        
-        <table border="1">
-            <tr>
-                <th>Code</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            
-            <c:forEach var="product" items="${products}">
-                <tr>
-                    <td>${product.code}</td>
-                    <td>${product.description}</td>
-                    <td>${product.priceCurrencyFormat}</td>
-                    <td><a href="ProductServlet?action=edit&code=${product.code}">Edit</a></td>
-                    <td><a href="ProductServlet?action=delete&code=${product.code}">Delete</a></td>
-                </tr>
-            </c:forEach>
-            
-        </table>
-        
-        <a href="ProductServlet?action=saveProduct" style="text-align: center">Add Product</a>
-
-            
     
+        <div id="containerMain">
+            <h2>Product List</h2>
+        
+            <table border="1">
+                <tr>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            
+                <c:forEach var="product" items="${products}">
+                    <tr>
+                        <td>${product.code}</td>
+                        <td>${product.description}</td>
+                        <td>${product.priceCurrencyFormat}</td>
+                        <td><a href="ProductServlet?action=edit&code=${product.code}">Edit</a></td>
+                        <td><a href="ProductServlet?action=delete&code=${product.code}">Delete</a></td>
+                    </tr>
+                </c:forEach>
+            
+            </table>
+        
+            <a href="ProductServlet?action=saveProduct" style="text-align: center">Add Product</a>
+            
+        <footer>
+            <p>This website is for educational purposes under the Des Moines Area Community College.</p>
+            <p>All images are under fair use or are in public domain.</p>
+            <img src="images/Note.png" alt="music note">
+        </footer>
+        </div>
+
 </html>
