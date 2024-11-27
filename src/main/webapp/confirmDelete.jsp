@@ -11,23 +11,35 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Delete Product</title>
+        <title>Delete Product - Product Maintenance Application</title>
     </head>
     <body>
-        <h3>Are you sure you want to delete this product?</h3>
+        <header>
+            <h1>Product Maintenance Application</h1>
+            <h3>Are you sure you want to delete this product?</h3>
+        </header>
         
-        <p><strong>Code:</strong> ${product.code}</P>
-        <p><strong>Description:</strong> ${product.description}</P>
-        <p><strong>Price: $</strong>${product.price}</P>
+        <div id="formContainer">
 
-        <form action="ProductServlet" method="post">
-            <input type="hidden" name="action" value="confirmDelete">
-            <input type="hidden" name="code" value="${product.code}">
-            <input type="submit" value="Confirm Delete">
-        </form>
-        <form action="ProductServlet" method="get"> <!--Cancel deletion, return with action=list -->
-            <input type="hidden" name="action" value="list">
-            <input type="submit" value="Cancel">
-        </form>
+            <div>
+                    <p><strong>Code:</strong> ${product.code}</p>
+                    <p><strong>Description:</strong> ${product.description}</p>
+                    <p><strong>Price: $</strong>${product.price}</p>
+            </div>
+
+            <form action="ProductServlet" method="post">
+                <input type="hidden" name="action" value="confirmDelete">
+                <input type="hidden" name="code" value="${product.code}">
+                <div class="flex">
+                    <input type="submit" value="Confirm Delete" style="font-weight: bold;">
+                </div>
+            </form>
+            <form action="ProductServlet" method="get"> <!--Cancel deletion, return with action=list -->
+                <input type="hidden" name="action" value="list">
+                <div class="flex">
+                    <input type="submit" value="Cancel" style="font-weight: bold;">
+                </div>
+            </form>
+        </div>
     </body>
 </html>
