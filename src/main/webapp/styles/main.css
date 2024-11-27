@@ -1,0 +1,90 @@
+/* 
+    Created on : Oct 24, 2024, 3:40:01 PM
+    Author     : ethan
+*/
+
+/*for all pages*/
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #A4A4A4;
+    font-family: Arial, sans-serif;
+}
+
+h1, h2, h3, h4 {
+    text-align: center;
+    color: #333;
+    font-family: Garamond, serif;
+}
+
+.banner {
+    margin: 0;
+    padding: 22px 20px;
+    background-color: lightblue;
+}
+
+nav {
+    margin: 0;
+    padding: 0;
+    border: 3px solid black;
+    background-color: #26B170;
+    overflow: hidden;
+}
+
+nav a {
+    margin: 0;
+    padding: 25px 20px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    float: left;
+    text-decoration: none;
+    text-shadow: 4px 4px 7px black;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect for the navigation links */
+nav a:hover {
+    padding: 26px 21px; /* Increase padding slightly to maintain layout */
+    border-radius: 7px; /* Correct property name for rounded corners */
+    background-color: #7ED348; /* Background color on hover */
+    color: #e0e0e0; /* Slightly lighter text color */
+    transform: scale(1.1); /* Zoom-in effect */
+    text-shadow: 2px 2px 4px black, 0 0 10px white; /* Add glow effect */
+}
+
+/* Optional: Scale down other links when one is hovered */
+nav a:hover ~ a {
+    transform: scale(0.9); /* Scale down other items */
+}
+
+#containerMain {
+    margin: 20px auto;
+    width: 80%;
+    background-color: #f4f4f4;
+    border: 10px ridge #0056b5;
+}
+
+p {
+    text-align: center
+}
+
+img {
+    margin: auto;
+    display: block;
+}
+
+footer {
+    margin: 50px 0px 0px 0px;
+    padding: 20px;
+    background-color:#009DD1;;
+}
+
+footer p {
+    margin: 5px;
+    padding: 3px;
+    font-family: Garamond, serif;
+    font-size: 18px;
+    color: #353336
+}

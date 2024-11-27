@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+    
+    <!-- Display Name -->
+    <display-name>Product Maintenance Application</display-name>
+    
+    <!-- Session Configuration -->
+    <session-config>
+        <session-timeout>30</session-timeout> <!-- Timeout in minutes -->
+    </session-config>
+    
+    <!-- Security Constraints -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Protected Resources</web-resource-name>
+            <url-pattern>/ProductServlet/*</url-pattern> <!-- Restricts access to ProductServlet -->
+            <url-pattern>/productList.jsp</url-pattern>
+            <url-pattern>/productAdd.jsp</url-pattern>
+            <url-pattern>/confirmDelete.jsp</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>programmer</role-name>
+            <role-name>customer_service</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee> <!-- Enforces HTTPS -->
+        </user-data-constraint>
+    </security-constraint>
+    
+    <!-- Welcome File -->
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+    
+    <!-- Login Configuration -->
+    <login-config>
+        <auth-method>BASIC</auth-method> <!-- Use BASIC, FORM, or DIGEST as needed -->
+        <realm-name>Product Maintenance Realm</realm-name>
+    </login-config>
+    
+    <!-- Security Roles -->
+    <security-role>
+        <role-name>programmer</role-name>
+    </security-role>
+    <security-role>
+        <role-name>customer_service</role-name>
+    </security-role>
+    
+    <!-- Servlet Configuration -->
+    <servlet>
+        <servlet-name>ProductServlet</servlet-name>
+        <servlet-class>controller.ProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductServlet</servlet-name>
+        <url-pattern>/ProductServlet</url-pattern>
+    </servlet-mapping>
+    
+</web-app>
