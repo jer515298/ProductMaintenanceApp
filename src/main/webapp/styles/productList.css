@@ -14,7 +14,7 @@ table th, table td {
 }
 
 table th {
-    background-color: #333399;
+    background-color: #4CAF50;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
@@ -41,7 +41,7 @@ table a:hover {
 /* Add Product Button */
 .add-product-btn {
     display: block;
-    width: 140%;
+    width: 40%;
     margin: 20px auto;
     padding: 10px 12px;
     background-color: #4CAF50;

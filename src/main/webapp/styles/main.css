@@ -67,7 +67,8 @@ nav a:hover ~ a {
 }
 
 p {
-    text-align: center
+    text-align: center;
+    color: #333;
 }
 
 img {

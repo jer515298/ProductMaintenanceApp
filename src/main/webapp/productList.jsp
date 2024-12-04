@@ -51,7 +51,7 @@
             
             </table>
         
-            <a href="ProductServlet?action=saveProduct" style="text-align: center">Add Product</a>
+            <a href="ProductServlet?action=saveProduct" class="add-product-btn">Add Product</a>
             
         <footer>
             <p>This website is for educational purposes under the Des Moines Area Community College.</p>
